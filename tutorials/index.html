@@ -10,21 +10,45 @@
 <link rel="stylesheet" href="../css/components.css">
 <link rel="stylesheet" href="../css/responsive.css">
 <style>
-  /* Additional styles for tutorial cards */
+  /* Additional styles for tutorial cards - Add to your existing components.css later */
+  .page-hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .page-hero .eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .page-hero h1 {
+    font-size: 2.5rem;
+    margin: 0.5rem 0 0.5rem;
+    color: #0f172a;
+  }
+  .page-hero p {
+    font-size: 1.1rem;
+    color: #475569;
+    max-width: 600px;
+    margin: 0 auto;
+  }
   .tutorial-card {
     display: flex;
     flex-direction: column;
-    background: var(--card-bg, #fff);
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 10px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     transition: transform 0.2s, box-shadow 0.2s;
     height: 100%;
-    border-left: 4px solid var(--primary-color, #2563eb);
+    border-left: 4px solid #2563eb;
   }
   .tutorial-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   }
   .tutorial-card .badge-group {
     display: flex;
@@ -35,32 +59,42 @@
   .tutorial-card .badge {
     font-size: 0.7rem;
     font-weight: 600;
-    padding: 0.2rem 0.6rem;
+    padding: 0.2rem 0.7rem;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    background: var(--badge-bg, #f1f5f9);
-    color: var(--badge-text, #475569);
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
   }
-  .tutorial-card .badge.level-s1 { background: #dbeafe; color: #1e40af; }
-  .tutorial-card .badge.level-s2 { background: #d1fae5; color: #065f46; }
-  .tutorial-card .badge.level-s3 { background: #fef3c7; color: #92400e; }
-  .tutorial-card .badge.level-s4 { background: #fce4ec; color: #b91c1c; }
-  .tutorial-card .badge.level-s5 { background: #e0e7ff; color: #3730a3; }
-  .tutorial-card .badge.level-s6 { background: #f3e8ff; color: #6b21a8; }
-  .tutorial-card .badge.difficulty-beginner { background: #dcfce7; color: #166534; }
-  .tutorial-card .badge.difficulty-intermediate { background: #fef9c3; color: #854d0e; }
-  .tutorial-card .badge.difficulty-advanced { background: #fee2e2; color: #991b1b; }
-  .tutorial-card .badge.practical { background: #dbeafe; color: #1e40af; }
-  .tutorial-card .badge.theory { background: #f1f5f9; color: #475569; }
+  .tutorial-card .badge.level-s1 { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+  .tutorial-card .badge.level-s2 { background: #d1fae5; color: #065f46; border-color: #a7f3d0; }
+  .tutorial-card .badge.level-s3 { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+  .tutorial-card .badge.level-s4 { background: #fce4ec; color: #b91c1c; border-color: #f9a8b4; }
+  .tutorial-card .badge.level-s5 { background: #e0e7ff; color: #3730a3; border-color: #c7d2fe; }
+  .tutorial-card .badge.level-s6 { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+  .tutorial-card .badge.difficulty-beginner { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+  .tutorial-card .badge.difficulty-intermediate { background: #fef9c3; color: #854d0e; border-color: #fde047; }
+  .tutorial-card .badge.difficulty-advanced { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+  .tutorial-card .badge.practical { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+  .tutorial-card .badge.theory { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+  .tutorial-card .badge.topic-badge { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+  
   .tutorial-card h3 {
     font-size: 1.1rem;
     margin: 0 0 0.4rem 0;
-    color: var(--heading-color, #0f172a);
+    color: #0f172a;
+  }
+  .tutorial-card h3 a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .tutorial-card h3 a:hover {
+    color: #2563eb;
   }
   .tutorial-card .description {
     font-size: 0.9rem;
-    color: var(--text-muted, #64748b);
+    color: #64748b;
     flex-grow: 1;
     margin-bottom: 1rem;
   }
@@ -69,10 +103,12 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
-    color: var(--text-muted, #94a3b8);
-    border-top: 1px solid var(--border-light, #e2e8f0);
+    color: #94a3b8;
+    border-top: 1px solid #f1f5f9;
     padding-top: 0.8rem;
     margin-top: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .tutorial-card .meta-footer .time {
     display: flex;
@@ -80,45 +116,100 @@
     gap: 0.3rem;
   }
   .tutorial-card .meta-footer .prereq {
-    color: var(--primary-color, #2563eb);
+    color: #2563eb;
     text-decoration: none;
     font-weight: 500;
   }
   .tutorial-card .meta-footer .prereq:hover {
     text-decoration: underline;
   }
+  
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
-    padding: 1rem;
-    background: var(--filter-bg, #f8fafc);
-    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
   }
   .filter-bar input,
   .filter-bar select {
     padding: 0.6rem 1rem;
-    border: 1px solid var(--border-color, #cbd5e1);
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 0.95rem;
     background: white;
     flex: 1 1 200px;
+    color: #0f172a;
   }
   .filter-bar input:focus,
   .filter-bar select:focus {
-    outline: 2px solid var(--primary-color, #2563eb);
+    outline: 2px solid #2563eb;
     outline-offset: 1px;
+    border-color: transparent;
   }
+  .filter-bar input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .card-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .card-grid.three {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
   .no-results {
     text-align: center;
     padding: 3rem 1rem;
-    color: var(--text-muted, #64748b);
+    color: #64748b;
+    grid-column: 1 / -1;
   }
   .no-results h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    color: #0f172a;
   }
+  
+  .loading-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 2rem;
+    color: #94a3b8;
+  }
+  
+  .section {
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0 2rem;
+  }
+  .stat-item {
+    background: #f8fafc;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+  .stat-item strong {
+    color: #0f172a;
+  }
+  
   @media (max-width: 640px) {
     .filter-bar {
       flex-direction: column;
@@ -128,21 +219,37 @@
       flex: 1 1 auto;
       width: 100%;
     }
+    .page-hero h1 {
+      font-size: 1.8rem;
+    }
+    .card-grid.three {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body data-page="tutorials">
 
+<!-- Header will be loaded here by navigation.js -->
 <div id="site-header"></div>
 
 <main>
   <!-- Hero Section -->
   <section class="page-hero">
     <div class="container">
-      <p class="eyebrow">Tutorials</p>
+      <p class="eyebrow">📚 Tutorials</p>
       <h1>Short, practical ICT lessons.</h1>
       <p>Quick guides designed around skills learners can immediately practise, aligned with the NCDC syllabus.</p>
-      <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.8rem; justify-content:center;">
+      
+      <!-- Stats -->
+      <div class="stats-bar" id="stats-bar">
+        <span class="stat-item"><strong id="total-tutorials">0</strong> tutorials</span>
+        <span class="stat-item">O-Level · <strong id="o-level-count">0</strong></span>
+        <span class="stat-item">A-Level · <strong id="a-level-count">0</strong></span>
+      </div>
+      
+      <!-- Level badges -->
+      <div style="margin-top:0.5rem; display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">
         <span class="badge level-s1">S.1</span>
         <span class="badge level-s2">S.2</span>
         <span class="badge level-s3">S.3</span>
@@ -157,7 +264,7 @@
   <section class="section">
     <div class="container">
       <div class="filter-bar">
-        <input id="tutorial-search" type="search" placeholder="Search tutorials by title or topic..." aria-label="Search tutorials">
+        <input id="tutorial-search" type="search" placeholder="Search tutorials by title, topic, or tag..." aria-label="Search tutorials">
         <select id="tutorial-level" aria-label="Filter tutorials by level">
           <option value="all">All levels</option>
           <option value="s1">S.1</option>
@@ -178,47 +285,72 @@
           <option value="presentations">Presentations</option>
           <option value="ai">AI & Emerging Tech</option>
           <option value="security">Security</option>
+          <option value="file-management">File Management</option>
+          <option value="electronic-publication">Electronic Publication</option>
+        </select>
+        <select id="tutorial-difficulty" aria-label="Filter tutorials by difficulty">
+          <option value="all">All difficulties</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
         </select>
       </div>
+      
       <div id="tutorial-grid" class="card-grid three">
-        <!-- Tutorial cards will be rendered here by JavaScript -->
-        <div class="loading-message" style="text-align:center; grid-column:1/-1; padding:2rem;">Loading tutorials...</div>
+        <div class="loading-message">Loading tutorials...</div>
       </div>
     </div>
   </section>
 </main>
 
+<!-- Footer will be loaded here by navigation.js -->
 <div id="site-footer"></div>
 
-<!-- Data file with tutorial list -->
+<!-- Load tutorial data -->
 <script src="../data/tutorials-data.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/navigation.js"></script>
 <script src="../js/utilities.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const grid = document.getElementById('tutorial-grid');
     const searchInput = document.getElementById('tutorial-search');
     const levelFilter = document.getElementById('tutorial-level');
     const topicFilter = document.getElementById('tutorial-topic');
+    const difficultyFilter = document.getElementById('tutorial-difficulty');
 
     // Check if tutorial data is available
     if (typeof tutorials === 'undefined') {
-      grid.innerHTML = `<div class="no-results"><h3>⚠️ Tutorial data not found</h3><p>Please make sure tutorials-data.js is loaded correctly.</p></div>`;
+      grid.innerHTML = `<div class="no-results">
+        <h3>⚠️ Tutorial data not found</h3>
+        <p>Please make sure tutorials-data.js is loaded correctly.</p>
+      </div>`;
       return;
+    }
+
+    function updateStats(filtered) {
+      const total = document.getElementById('total-tutorials');
+      const oLevel = document.getElementById('o-level-count');
+      const aLevel = document.getElementById('a-level-count');
+      
+      if (total) total.textContent = tutorials.length;
+      if (oLevel) oLevel.textContent = tutorials.filter(t => ['s1','s2','s3','s4'].includes(t.level)).length;
+      if (aLevel) aLevel.textContent = tutorials.filter(t => ['s5','s6'].includes(t.level)).length;
     }
 
     function renderTutorials() {
       const searchTerm = searchInput.value.toLowerCase().trim();
       const levelValue = levelFilter.value;
       const topicValue = topicFilter.value;
+      const difficultyValue = difficultyFilter.value;
 
       const filtered = tutorials.filter(t => {
         // Search filter (title, description, topic, tags)
         const searchMatch = !searchTerm || 
           t.title.toLowerCase().includes(searchTerm) ||
           (t.description && t.description.toLowerCase().includes(searchTerm)) ||
-          (t.topic && t.topic.toLowerCase().includes(searchTerm)) ||
+          (t.topic && t.topic.replace('-',' ').includes(searchTerm)) ||
           (t.tags && t.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
 
         // Level filter
@@ -226,14 +358,16 @@
 
         // Topic filter
         const topicMatch = topicValue === 'all' || 
-          (t.topic && t.topic === topicValue) ||
-          (t.tags && t.tags.includes(topicValue));
+          (t.topic && t.topic === topicValue);
 
-        return searchMatch && levelMatch && topicMatch;
+        // Difficulty filter
+        const difficultyMatch = difficultyValue === 'all' || t.difficulty === difficultyValue;
+
+        return searchMatch && levelMatch && topicMatch && difficultyMatch;
       });
 
       if (filtered.length === 0) {
-        grid.innerHTML = `<div class="no-results" style="grid-column:1/-1;">
+        grid.innerHTML = `<div class="no-results">
           <h3>🔍 No tutorials found</h3>
           <p>Try adjusting your search or filters.</p>
         </div>`;
@@ -245,15 +379,15 @@
           <div class="badge-group">
             <span class="badge level-${t.level}">${t.level.toUpperCase()}</span>
             <span class="badge difficulty-${t.difficulty || 'beginner'}">${t.difficulty || 'Beginner'}</span>
-            ${t.practical ? '<span class="badge practical">Practical</span>' : '<span class="badge theory">Theory</span>'}
-            ${t.topic ? `<span class="badge" style="background:#e2e8f0;">${t.topic.replace('-',' ')}</span>` : ''}
+            ${t.practical ? '<span class="badge practical">💻 Practical</span>' : '<span class="badge theory">📖 Theory</span>'}
+            ${t.topic ? `<span class="badge topic-badge">${t.topic.replace('-',' ')}</span>` : ''}
           </div>
-          <h3><a href="${t.url || '#'}" style="text-decoration:none; color:inherit;">${t.title}</a></h3>
+          <h3><a href="${t.url || '#'}">${t.title}</a></h3>
           ${t.description ? `<p class="description">${t.description}</p>` : ''}
           <div class="meta-footer">
             <span class="time">⏱️ ${t.time || '5 min'}</span>
             ${t.prerequisites && t.prerequisites.length ? 
-              `<span>Prereq: ${t.prerequisites.map(p => `<a href="#" class="prereq">${p}</a>`).join(' ')}</span>` : 
+              `<span>📌 ${t.prerequisites.map(p => `<a href="#" class="prereq">${p}</a>`).join(', ')}</span>` : 
               ''}
           </div>
         </div>
@@ -264,8 +398,10 @@
     searchInput.addEventListener('input', renderTutorials);
     levelFilter.addEventListener('change', renderTutorials);
     topicFilter.addEventListener('change', renderTutorials);
+    difficultyFilter.addEventListener('change', renderTutorials);
 
     // Initial render
+    updateStats();
     renderTutorials();
   });
 </script>
