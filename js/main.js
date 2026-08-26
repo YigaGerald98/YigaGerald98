@@ -602,3 +602,51 @@ function showNotification(
 console.log(
     "Yiga Gerald ICT Learning Hub loaded successfully."
 );
+
+// js/main.js - Main site functionality
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Load header component if it exists
+  const headerEl = document.getElementById('site-header');
+  if (headerEl) {
+    fetch('../components/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Header not found');
+        return response.text();
+      })
+      .then(data => headerEl.innerHTML = data)
+      .catch(() => {
+        // Fallback header if component not found
+        headerEl.innerHTML = `
+          <nav style="padding:1rem 2rem; background:#0f172a; color:white; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <a href="/" style="color:white; text-decoration:none; font-weight:bold; font-size:1.2rem;">Yiga Gerald</a>
+            <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+              <a href="/" style="color:#94a3b8; text-decoration:none;">Home</a>
+              <a href="/tutorials/" style="color:white; text-decoration:none;">Tutorials</a>
+              <a href="/assessments/" style="color:#94a3b8; text-decoration:none;">Assessments</a>
+            </div>
+          </nav>
+        `;
+      });
+  }
+
+  // Load footer component if it exists
+  const footerEl = document.getElementById('site-footer');
+  if (footerEl) {
+    fetch('../components/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Footer not found');
+        return response.text();
+      })
+      .then(data => footerEl.innerHTML = data)
+      .catch(() => {
+        // Fallback footer if component not found
+        footerEl.innerHTML = `
+          <footer style="background:#0f172a; color:#94a3b8; text-align:center; padding:2rem 1rem; margin-top:2rem; border-top:1px solid #1e293b;">
+            <p>© ${new Date().getFullYear()} Yiga Gerald. All rights reserved.</p>
+            <p style="font-size:0.85rem;">Practical ICT education · NCDC aligned</p>
+          </footer>
+        `;
+      });
+  }
+});
