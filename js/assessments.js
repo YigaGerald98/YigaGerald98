@@ -1,9 +1,9 @@
 /* =========================================================
    PROWESS ICT ASSESSMENT ENGINE
+   LOCAL-FIRST + GOOGLE SHEETS SYNC
    ========================================================= */
 
-const STORAGE_KEY =
-  "yg-assessment-progress-v1";
+const STORAGE_KEY = "yg-assessment-progress-v1";
 
 
 /* =========================================================
@@ -18,251 +18,52 @@ function getProgress() {
       localStorage.getItem(STORAGE_KEY)
     ) || {};
 
-  } catch {
+  } catch (error) {
+
+    console.error(
+      "Could not read assessment progress:",
+      error
+    );
 
     return {};
 
   }
+
 }
 
 
 function saveProgress(data) {
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
+  try {
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(data)
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Could not save assessment progress:",
+      error
+    );
+
+    return false;
+
+  }
+
 }
 
 
 /* =========================================================
-   ASSESSMENT INFORMATION
-   ========================================================= */
-
-function assessmentTitle(unitKey) {
-
-  const names = {
-
-    unit1:
-      "Unit 1 — Computer Systems & Troubleshooting",
-
-    unit2:
-      "Unit 2 — Data, Networks & Security",
-
-    unit3:
-      "Unit 3 — Productivity & Digital Communication",
-
-    unit4:
-      "Unit 4 — Systems Analysis & Digital Solutions",
-
-    final:
-      "Final — Integrated ICT Challenge"
-
-  };
-
-  return names[unitKey] || unitKey;
-}
-
-
-/* =========================================================
-   PROFILE UI
-   ========================================================= */
-
-function showLearnerProfile() {
-
-  const container =
-    document.querySelector(
-      "#learner-profile"
-    );
-
-  if (!container) {
-    return;
-  }
-
-  const existing =
-    getLearnerProfile();
-
-  container.innerHTML = `
-    <div class="profile-card">
-
-      <div class="profile-heading">
-        <p class="eyebrow">Learner Profile</p>
-
-        <h2>
-          ${existing
-            ? "Your learner details"
-            : "Set up your learner profile"}
-        </h2>
-
-        <p>
-          Your details are used to identify your
-          assessment progress. They are saved on
-          this device and used when synchronising
-          results.
-        </p>
-      </div>
-
-      <div class="profile-form">
-
-        <label>
-          <span>Full Name</span>
-
-          <input
-            id="learner-name"
-            type="text"
-            autocomplete="name"
-            placeholder="Enter your full name"
-            value="${existing?.name || ""}"
-          >
-        </label>
-
-        <label>
-          <span>Learner ID</span>
-
-          <input
-            id="learner-id"
-            type="text"
-            placeholder="e.g. S5-001"
-            value="${existing?.learnerId || ""}"
-          >
-        </label>
-
-        <label>
-          <span>Class</span>
-
-          <input
-            id="learner-class"
-            type="text"
-            placeholder="e.g. S.5"
-            value="${existing?.className || ""}"
-          >
-        </label>
-
-        <button
-          id="save-profile"
-          class="btn btn-primary"
-          type="button"
-        >
-          ${existing
-            ? "Update Profile"
-            : "Save Profile"}
-        </button>
-
-        <div
-          id="profile-message"
-          class="feedback"
-          aria-live="polite"
-        ></div>
-
-      </div>
-
-    </div>
-  `;
-
-  document
-    .querySelector("#save-profile")
-    ?.addEventListener(
-      "click",
-      saveProfileFromForm
-    );
-}
-
-
-async function saveProfileFromForm() {
-
-  const name =
-    document
-      .querySelector("#learner-name")
-      ?.value
-      .trim();
-
-  const learnerId =
-    document
-      .querySelector("#learner-id")
-      ?.value
-      .trim();
-
-  const className =
-    document
-      .querySelector("#learner-class")
-      ?.value
-      .trim();
-
-  const message =
-    document.querySelector(
-      "#profile-message"
-    );
-
-
-  if (!name || !learnerId || !className) {
-
-    message.className =
-      "feedback error";
-
-    message.textContent =
-      "Please complete all learner details.";
-
-    return;
-  }
-
-
-  const profile = {
-
-    name,
-
-    learnerId,
-
-    className,
-
-    savedAt:
-      new Date().toISOString()
-
-  };
-
-
-  saveLearnerProfile(
-    profile
-  );
-
-
-  message.className =
-    "feedback success";
-
-  message.textContent =
-    "Profile saved successfully.";
-
-
-  const result =
-    await registerLearnerOnline(
-      profile
-    );
-
-
-  if (result.offline) {
-
-    message.innerHTML =
-      "Profile saved on this device. " +
-      "It will be registered online when " +
-      "an internet connection is available.";
-
-  } else if (result.success) {
-
-    message.textContent =
-      "Profile saved and registered successfully.";
-
-  }
-}
-
-
-/* =========================================================
-   PAGE INITIALISATION
+   ASSESSMENT LAB
    ========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-
-    showLearnerProfile();
 
     const unitGrid =
       document.querySelector(
@@ -274,192 +75,14 @@ document.addEventListener(
       window.ASSESSMENT_DATA
     ) {
 
-      const units = [
-
-        [
-          "unit1",
-          "01",
-          "Computer Systems & Troubleshooting",
-          "Identify faults and apply systematic troubleshooting."
-        ],
-
-        [
-          "unit2",
-          "02",
-          "Data, Networks & Security",
-          "Apply networking, data and security concepts."
-        ],
-
-        [
-          "unit3",
-          "03",
-          "Productivity & Digital Communication",
-          "Apply office and digital communication skills."
-        ],
-
-        [
-          "unit4",
-          "04",
-          "Systems Analysis & Digital Solutions",
-          "Analyse requirements and evaluate solutions."
-        ],
-
-        [
-          "final",
-          "FINAL",
-          "Integrated ICT Challenge",
-          "Combine multiple ICT competencies."
-        ]
-
-      ];
-
-
-      const progress =
-        getProgress();
-
-
-      const total =
-        Object.values(
-          ASSESSMENT_DATA
-        )
-        .flat()
-        .length;
-
-
-      const done =
-        Object.values(progress)
-          .filter(
-            x => x?.completed
-          )
-          .length;
-
-
-      unitGrid.innerHTML =
-        units.map(
-          ([
-            key,
-            num,
-            title,
-            desc
-          ]) => {
-
-            const qs =
-              ASSESSMENT_DATA[key] || [];
-
-
-            const completed =
-              qs.filter(
-                q =>
-                  progress[q.id]
-                    ?.completed
-              ).length;
-
-
-            const percent =
-              qs.length
-                ? Math.round(
-                    completed /
-                    qs.length *
-                    100
-                  )
-                : 0;
-
-
-            return `
-              <a
-                class="unit-card"
-                href="green-valley/${
-                  key === "final"
-                    ? "final-task"
-                    : key.replace(
-                        "unit",
-                        "unit-"
-                      )
-                }.html"
-              >
-
-                <span class="unit-number">
-                  ${num}
-                </span>
-
-                <h3>
-                  ${title}
-                </h3>
-
-                <p>
-                  ${desc}
-                </p>
-
-                <div class="progress-shell">
-                  <div
-                    class="progress-bar"
-                    style="width:${percent}%"
-                  ></div>
-                </div>
-
-                <small>
-                  ${completed}/${qs.length}
-                  completed
-                </small>
-
-              </a>
-            `;
-
-          }
-        ).join("");
-
-
-      const overall =
-        document.querySelector(
-          "#overall-progress"
-        );
-
-
-      if (overall) {
-
-        overall.style.width =
-          `${
-            total
-              ? Math.round(
-                  done /
-                  total *
-                  100
-                )
-              : 0
-          }%`;
-
-      }
-
-
-      const txt =
-        document.querySelector(
-          "#overall-progress-text"
-        );
-
-
-      if (txt) {
-
-        txt.textContent =
-          `${
-            total
-              ? Math.round(
-                  done /
-                  total *
-                  100
-                )
-              : 0
-          }% complete`;
-
-      }
+      renderAssessmentUnits(unitGrid);
 
     }
-
 
     const quiz =
       document.querySelector(
         "#quiz-app"
       );
-
 
     if (quiz) {
 
@@ -475,13 +98,202 @@ document.addEventListener(
 
 
 /* =========================================================
+   UNIT GRID
+   ========================================================= */
+
+function renderAssessmentUnits(unitGrid) {
+
+  const units = [
+
+    [
+      "unit1",
+      "01",
+      "Computer Systems & Troubleshooting",
+      "Identify faults and apply systematic troubleshooting."
+    ],
+
+    [
+      "unit2",
+      "02",
+      "Data, Networks & Security",
+      "Apply networking, data and security concepts."
+    ],
+
+    [
+      "unit3",
+      "03",
+      "Productivity & Digital Communication",
+      "Apply office and digital communication skills."
+    ],
+
+    [
+      "unit4",
+      "04",
+      "Systems Analysis & Digital Solutions",
+      "Analyse requirements and evaluate solutions."
+    ],
+
+    [
+      "final",
+      "FINAL",
+      "Integrated ICT Challenge",
+      "Combine multiple ICT competencies."
+    ]
+
+  ];
+
+
+  const progress =
+    getProgress();
+
+
+  const allQuestions =
+    Object.values(
+      ASSESSMENT_DATA
+    ).flat();
+
+
+  const total =
+    allQuestions.length;
+
+
+  const done =
+    allQuestions.filter(
+      question =>
+        progress[question.id]?.completed
+    ).length;
+
+
+  unitGrid.innerHTML =
+    units.map(
+      ([key, number, title, description]) => {
+
+        const questions =
+          ASSESSMENT_DATA[key] || [];
+
+
+        const completed =
+          questions.filter(
+            question =>
+              progress[question.id]?.completed
+          ).length;
+
+
+        const percent =
+          questions.length
+            ? Math.round(
+                completed /
+                questions.length *
+                100
+              )
+            : 0;
+
+
+        const href =
+          key === "final"
+            ? "green-valley/final-task.html"
+            : `green-valley/unit-${key.replace("unit", "")}.html`;
+
+
+        return `
+
+<a
+  class="unit-card"
+  href="${href}"
+>
+
+<span class="unit-number">
+${number}
+</span>
+
+<h3>
+${title}
+</h3>
+
+<p>
+${description}
+</p>
+
+<div class="progress-shell">
+
+<div
+  class="progress-bar"
+  style="width:${percent}%"
+></div>
+
+</div>
+
+<small>
+${completed}/${questions.length}
+completed
+</small>
+
+</a>
+
+`;
+
+      }
+    ).join("");
+
+
+  const overall =
+    document.querySelector(
+      "#overall-progress"
+    );
+
+
+  if (overall) {
+
+    overall.style.width =
+      `${total
+        ? Math.round(done / total * 100)
+        : 0}%`;
+
+  }
+
+
+  const text =
+    document.querySelector(
+      "#overall-progress-text"
+    );
+
+
+  if (text) {
+
+    text.textContent =
+      `${total
+        ? Math.round(done / total * 100)
+        : 0}% complete`;
+
+  }
+
+}
+
+
+/* =========================================================
    QUIZ ENGINE
    ========================================================= */
 
-function startQuiz(
-  unitKey,
-  mount
-) {
+function startQuiz(unitKey, mount) {
+
+  if (
+    !window.ASSESSMENT_DATA
+  ) {
+
+    mount.innerHTML = `
+      <div class="empty-state">
+        Assessment data could not be loaded.
+      </div>
+    `;
+
+    console.error(
+      "ASSESSMENT_DATA is unavailable."
+    );
+
+    return;
+
+  }
+
 
   const questions =
     ASSESSMENT_DATA[unitKey] || [];
@@ -489,51 +301,19 @@ function startQuiz(
 
   if (!questions.length) {
 
-    mount.innerHTML =
-      `<div class="empty-state">
-        No questions have been added to this unit yet.
-      </div>`;
-
-    return;
-
-  }
-
-
-  const profile =
-    getLearnerProfile();
-
-
-  if (!profile) {
-
     mount.innerHTML = `
-      <div class="info-card">
-
-        <p class="eyebrow">
-          Learner profile required
-        </p>
-
-        <h2>
-          Please return to the Assessment Lab
-        </h2>
-
-        <p>
-          Save your learner profile before
-          starting an assessment.
-        </p>
-
-        <a
-          class="btn btn-primary"
-          href="../assessments/index.html"
-        >
-          Assessment Lab
-        </a>
-
+      <div class="empty-state">
+        No questions have been added to this unit yet.
       </div>
     `;
 
     return;
 
   }
+
+
+  const progress =
+    getProgress();
 
 
   let index = 0;
@@ -542,137 +322,139 @@ function startQuiz(
 
   let submitted = false;
 
-  let questionResults = [];
+  const results = [];
 
-  let startTime =
+  const startTime =
     Date.now();
 
 
   function render() {
 
-    const q =
+    const question =
       questions[index];
 
-    submitted =
-      false;
+
+    submitted = false;
 
 
     mount.innerHTML = `
 
-      <div class="quiz-top">
+<div class="quiz-top">
 
-        <span>
-          Question ${index + 1}
-          of ${questions.length}
-        </span>
+<span>
+Question ${index + 1}
+of
+${questions.length}
+</span>
 
-        <span>
-          ${q.marks} marks
-        </span>
+<span>
+${question.marks} marks
+</span>
 
-      </div>
-
-
-      <div class="progress-shell">
-
-        <div
-          class="progress-bar"
-          style="
-            width:${
-              index /
-              questions.length *
-              100
-            }%
-          "
-        ></div>
-
-      </div>
+</div>
 
 
-      <article class="quiz-card">
+<div class="progress-shell">
 
-        <div class="question-meta">
+<div
+  class="progress-bar"
+  style="width:${(index / questions.length) * 100}%"
+></div>
 
-          <span class="badge">
-            ${q.topic}
-          </span>
-
-          <span class="muted">
-            ${q.level}
-          </span>
-
-        </div>
+</div>
 
 
-        <div class="scenario">
-
-          <strong>
-            Scenario
-          </strong>
-
-          <p>
-            ${q.scenario}
-          </p>
-
-        </div>
+<article class="quiz-card">
 
 
-        <h2>
-          ${q.question}
-        </h2>
+<div class="question-meta">
+
+<span class="badge">
+${question.topic}
+</span>
+
+<span class="muted">
+${question.level}
+</span>
+
+</div>
 
 
-        <div class="options">
+<div class="scenario">
 
-          ${q.options.map(
-            (o, i) => `
-              <label class="option">
+<strong>
+Scenario
+</strong>
 
-                <input
-                  type="radio"
-                  name="answer"
-                  value="${i}"
-                >
+<p>
+${question.scenario}
+</p>
 
-                <span>
-                  ${o}
-                </span>
-
-              </label>
-            `
-          ).join("")}
-
-        </div>
+</div>
 
 
-        <button
-          id="submit-answer"
-          class="btn btn-primary"
-          type="button"
-        >
-          Check answer
-        </button>
+<h2>
+${question.question}
+</h2>
 
 
-        <div
-          id="feedback"
-          class="feedback"
-          aria-live="polite"
-        ></div>
+<div class="options">
 
-      </article>
+${question.options.map(
+  (option, i) => `
 
-    `;
+<label class="option">
+
+<input
+  type="radio"
+  name="answer"
+  value="${i}"
+>
+
+<span>
+${option}
+</span>
+
+</label>
+
+`
+).join("")}
+
+</div>
 
 
-    document
-      .querySelector(
+<button
+  id="submit-answer"
+  class="btn btn-primary"
+>
+
+Check answer
+
+</button>
+
+
+<div
+  id="feedback"
+  class="feedback"
+  aria-live="polite"
+></div>
+
+
+</article>
+
+`;
+
+
+    const submit =
+      document.querySelector(
         "#submit-answer"
-      )
-      ?.addEventListener(
-        "click",
-        check
       );
+
+
+    submit?.addEventListener(
+      "click",
+      check
+    );
 
   }
 
@@ -709,82 +491,63 @@ function startQuiz(
     }
 
 
-    submitted =
-      true;
+    submitted = true;
 
 
-    const q =
+    const question =
       questions[index];
 
 
     const chosen =
-      Number(
-        selected.value
-      );
+      Number(selected.value);
 
 
     const correct =
-      chosen === q.answer;
-
-
-    const marks =
-      correct
-        ? q.marks
-        : 0;
+      chosen === question.answer;
 
 
     if (correct) {
 
-      score += q.marks;
+      score += question.marks;
 
     }
 
 
-    /* -----------------------------------------------------
-       Store question result for this attempt
-       ----------------------------------------------------- */
-
-    questionResults.push({
+    results.push({
 
       questionId:
-        q.id,
+        question.id,
 
       unit:
         unitKey,
 
       topic:
-        q.topic,
+        question.topic,
 
-      level:
-        q.level,
+      correct:
+        correct,
 
-      correct,
-
-      marks,
+      marks:
+        correct
+          ? question.marks
+          : 0,
 
       maxMarks:
-        q.marks
+        question.marks
 
     });
 
 
-    /* -----------------------------------------------------
-       Preserve existing local progress
-       ----------------------------------------------------- */
+    progress[question.id] = {
 
-    const progress =
-      getProgress();
+      completed: true,
 
-
-    progress[q.id] = {
-
-      completed:
-        true,
-
-      correct,
+      correct: correct,
 
       score:
-        marks,
+        correct
+          ? question.marks
+          : 0,
 
       date:
         new Date().toISOString()
@@ -792,23 +555,19 @@ function startQuiz(
     };
 
 
-    saveProgress(
-      progress
-    );
+    saveProgress(progress);
 
 
     document
-      .querySelectorAll(
-        ".option"
-      )
+      .querySelectorAll(".option")
       .forEach(
-        (el, i) => {
+        (element, i) => {
 
           if (
-            i === q.answer
+            i === question.answer
           ) {
 
-            el.classList.add(
+            element.classList.add(
               "correct"
             );
 
@@ -820,7 +579,7 @@ function startQuiz(
             !correct
           ) {
 
-            el.classList.add(
+            element.classList.add(
               "wrong"
             );
 
@@ -840,41 +599,38 @@ function startQuiz(
 
     feedback.innerHTML = `
 
-      <strong>
-        ${
-          correct
-            ? "Correct!"
-            : "Not quite."
-        }
-      </strong>
+<strong>
+${correct ? "Correct!" : "Not quite."}
+</strong>
 
-      <p>
-        ${q.explanation}
-      </p>
+<p>
+${question.explanation}
+</p>
 
-      <div class="model-answer">
+<div class="model-answer">
 
-        <strong>
-          Model response:
-        </strong>
+<strong>
+Model response:
+</strong>
 
-        ${q.model}
+${question.model}
 
-      </div>
+</div>
 
-      <button
-        id="next-question"
-        class="btn btn-secondary"
-        type="button"
-      >
-        ${
-          index === questions.length - 1
-            ? "Finish unit"
-            : "Next question →"
-        }
-      </button>
+<button
+  id="next-question"
+  class="btn btn-secondary"
+>
 
-    `;
+${
+  index === questions.length - 1
+    ? "Finish unit"
+    : "Next question →"
+}
+
+</button>
+
+`;
 
 
     document
@@ -895,8 +651,7 @@ function startQuiz(
 
 
     if (
-      index >=
-      questions.length
+      index >= questions.length
     ) {
 
       finish();
@@ -914,181 +669,206 @@ function startQuiz(
 
     const max =
       questions.reduce(
-        (sum, q) =>
-          sum + q.marks,
+        (sum, question) =>
+          sum + question.marks,
         0
       );
 
 
-    const pct =
+    const percentage =
       max
         ? Math.round(
-            score /
-            max *
-            100
+            score / max * 100
           )
         : 0;
 
 
-    const durationSeconds =
-      Math.max(
-        0,
-        Math.round(
-          (
-            Date.now() -
-            startTime
-          ) / 1000
-        )
-      );
+    const profile =
+      typeof getLearnerProfile === "function"
+        ? getLearnerProfile()
+        : null;
+
+
+    const attemptId =
+      typeof generateAttemptId === "function"
+        ? generateAttemptId(unitKey)
+        : `LOCAL-${Date.now()}`;
 
 
     const duration =
-      formatDuration(
-        durationSeconds
+      Math.round(
+        (Date.now() - startTime) /
+        1000
       );
 
 
     const attempt = {
 
       attemptId:
-        generateAttemptId(
-          unitKey
-        ),
+
+        attemptId,
+
 
       learnerId:
-        profile.learnerId,
+
+        profile?.learnerId ||
+        "LOCAL-LEARNER",
+
 
       name:
-        profile.name,
+
+        profile?.name ||
+        "Local Learner",
+
 
       className:
-        profile.className,
+
+        profile?.className ||
+        "",
+
 
       assessment:
-        assessmentTitle(
-          unitKey
-        ),
 
-      score,
+        unitKey,
+
+
+      score:
+
+        score,
+
 
       maxMarks:
+
         max,
 
-      percentage:
-        pct,
 
-      duration,
+      percentage:
+
+        percentage,
+
+
+      duration:
+
+        duration,
+
 
       results:
-        questionResults,
 
-      completedAt:
-        new Date().toISOString()
+        results
 
     };
 
 
-    /* -----------------------------------------------------
-       Send to Google Sheets
-       ----------------------------------------------------- */
-
-    const syncResult =
-      await submitAssessmentAttempt(
-        attempt
-      );
-
-
-    let syncMessage;
+    let syncMessage =
+      "Progress saved on this device.";
 
 
     if (
-      syncResult.success
+      typeof submitAssessmentAttempt ===
+      "function"
     ) {
 
-      syncMessage =
-        `
-          <div class="sync-success">
-            ✓ Your result has been
-            synchronised successfully.
-          </div>
-        `;
+      try {
 
-    } else {
+        const response =
+          await submitAssessmentAttempt(
+            attempt
+          );
 
-      syncMessage =
-        `
-          <div class="sync-pending">
-            ✓ Your result is saved on this
-            device and will be synchronised
-            when an internet connection is
-            available.
-          </div>
-        `;
+
+        if (
+          response?.success
+        ) {
+
+          syncMessage =
+            "Assessment saved and synchronised.";
+
+        } else {
+
+          syncMessage =
+            "Assessment saved locally and queued for synchronisation.";
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Could not synchronise attempt:",
+          error
+        );
+
+      }
 
     }
 
 
     mount.innerHTML = `
 
-      <div class="result-card">
+<div class="result-card">
 
-        <p class="eyebrow">
-          Unit complete
-        </p>
+<p class="eyebrow">
+Unit complete
+</p>
 
-        <h1>
-          ${score}/${max}
-        </h1>
+<h1>
+${score}/${max}
+</h1>
 
-        <h2>
-          ${pct}%
-        </h2>
+<h2>
+${percentage}%
+</h2>
 
-
-        <p>
-
-          ${
-            pct >= 80
-              ? "Excellent work. Keep stretching your application and analysis skills."
-              : pct >= 50
-                ? "Good foundation. Review the feedback and attempt the unit again."
-                : "Keep practising. Review the model responses and retry the unit."
-          }
-
-        </p>
+<p>
+${
+  percentage >= 80
+    ? "Excellent work. Keep stretching your application and analysis skills."
+    : percentage >= 50
+      ? "Good foundation. Review the feedback and attempt the unit again."
+      : "Keep practising. Review the model responses and retry the unit."
+}
+</p>
 
 
-        ${syncMessage}
+<div
+  class="sync-status"
+  id="result-sync-status"
+>
+
+${syncMessage}
+
+</div>
 
 
-        <div class="button-row">
+<div class="button-row">
 
-          <button
-            id="retry"
-            class="btn btn-primary"
-            type="button"
-          >
-            Retry unit
-          </button>
+<button
+  id="retry"
+  class="btn btn-primary"
+>
 
-          <a
-            class="btn btn-secondary"
-            href="../../assessments/index.html"
-          >
-            Assessment Lab
-          </a>
+Retry unit
 
-        </div>
+</button>
 
-      </div>
 
-    `;
+<a
+  class="btn btn-secondary"
+  href="../../assessments/index.html"
+>
+
+Assessment Lab
+
+</a>
+
+</div>
+
+</div>
+
+`;
 
 
     document
-      .querySelector(
-        "#retry"
-      )
+      .querySelector("#retry")
       ?.addEventListener(
         "click",
         () => {
@@ -1097,10 +877,7 @@ function startQuiz(
 
           score = 0;
 
-          questionResults = [];
-
-          startTime =
-            Date.now();
+          results.length = 0;
 
           render();
 
@@ -1113,35 +890,3 @@ function startQuiz(
   render();
 
 }
-
-
-/* =========================================================
-   DURATION
-   ========================================================= */
-
-function formatDuration(
-  seconds
-) {
-
-  const minutes =
-    Math.floor(
-      seconds / 60
-    );
-
-
-  const remaining =
-    seconds % 60;
-
-
-  if (!minutes) {
-
-    return `${remaining}s`;
-
-  }
-
-
-  return `${minutes}m ${String(
-    remaining
-  ).padStart(2, "0")}s`;
-
-    }
