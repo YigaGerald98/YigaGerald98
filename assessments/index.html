@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta
   name="description"
   content="Prowess Technologies ICT Assessment Lab."
 >
 
-<title>
-Assessment Lab | Yiga Gerald
-</title>
+<title>Assessment Lab | Yiga Gerald</title>
 
 <link
   rel="icon"
@@ -25,51 +17,30 @@ Assessment Lab | Yiga Gerald
   type="image/svg+xml"
 >
 
-<link
-  rel="stylesheet"
-  href="../css/main.css"
->
-
-<link
-  rel="stylesheet"
-  href="../css/components.css"
->
-
-<link
-  rel="stylesheet"
-  href="../css/responsive.css"
->
-
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/responsive.css">
 </head>
-
 
 <body data-page="assessments">
 
 <div id="site-header"></div>
 
-
 <main>
 
 <section class="page-hero">
-
   <div class="container">
 
-    <p class="eyebrow">
-      Assessment Lab
-    </p>
+    <p class="eyebrow">Assessment Lab</p>
 
-    <h1>
-      Practise. Get feedback. Improve.
-    </h1>
+    <h1>Practise. Get feedback. Improve.</h1>
 
     <p>
-      Scenario-based ICT assessment with
-      progressive difficulty and local-first
-      progress synchronisation.
+      Scenario-based ICT assessment with progressive
+      difficulty and synchronised learner progress.
     </p>
 
   </div>
-
 </section>
 
 
@@ -77,65 +48,37 @@ Assessment Lab | Yiga Gerald
 
   <div class="container">
 
+    <div class="lab-intro info-card">
 
-    <!-- LEARNER PROFILE -->
-
-    <div
-      id="learner-profile"
-      class="section"
-    ></div>
-
-
-    <!-- SYNC STATUS -->
-
-    <div
-      id="sync-status"
-      class="sync-status"
-      aria-live="polite"
-    >
-      Checking connection...
-    </div>
-
-
-    <!-- ASSESSMENT INTRO -->
-
-    <div
-      class="lab-intro info-card"
-    >
-
-      <h2>
-        Green Valley ICT Assessment
-      </h2>
+      <h2>Green Valley ICT Assessment</h2>
 
       <p>
         Work through realistic ICT situations.
-        Your progress is saved on this device
-        and synchronised to the teacher's
-        assessment record when possible.
+        Your progress is saved on this device and
+        synchronised to the assessment system when
+        internet access is available.
       </p>
 
+      <div id="learner-profile-area"></div>
 
       <div class="progress-shell">
-
         <div
           id="overall-progress"
           class="progress-bar"
           style="width:0%"
         ></div>
-
       </div>
 
-
-      <p
-        id="overall-progress-text"
-      >
+      <p id="overall-progress-text">
         0% complete
       </p>
 
+      <div id="sync-status" class="sync-status">
+        Checking synchronisation status...
+      </div>
+
     </div>
 
-
-    <!-- UNIT CARDS -->
 
     <div
       id="assessment-unit-grid"
@@ -148,25 +91,17 @@ Assessment Lab | Yiga Gerald
 
 </main>
 
-
 <div id="site-footer"></div>
 
 
 <script src="../data/site-data.js"></script>
-
 <script src="../data/assessment-data.js"></script>
 
 <script src="../js/main.js"></script>
-
 <script src="../js/navigation.js"></script>
-
 <script src="../js/progress-sync.js"></script>
-
 <script src="../js/assessments.js"></script>
-
 <script src="../js/utilities.js"></script>
 
-
 </body>
-
-</html>
+  </html>
