@@ -18,7 +18,7 @@ const tutorials = [
     time: '4 min',
     tags: ['tools', 'hardware', 'identification'],
     prerequisites: [],
-    url: 'tutorials/o-level/computer-basics/identifying-ict-tools.html'
+    url: '/tutorials/o-level/computer-basics/identifying-ict-tools.html'
   },
   {
     id: 's1-002',
