@@ -1,324 +1,55 @@
-// Complete NCDC Syllabus Tutorial Data
-// O-Level (S.1 - S.4) and A-Level (S.5 - S.6)
-
+// Complete ICT Tutorial Data
 const tutorials = [
-  // ============================================
-  // O-LEVEL SECTION 1: COMPUTER BASICS & ICT TOOLS
-  // ============================================
-  {
-    id: 's1-001', level: 's1', title: 'Identifying ICT Tools',
-    description: 'Learn to identify common ICT tools and their uses in everyday life.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['tools','hardware','identification'], prerequisites: [],
-    url: 'o-level/computer-basics/identifying-ict-tools.html'
-  },
-  {
-    id: 's1-002', level: 's1', title: 'What Does Each ICT Device Do?',
-    description: 'Understand the specific functions of different ICT devices.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '3 min',
-    tags: ['devices','functions'], prerequisites: ['Identifying ICT Tools'],
-    url: 'o-level/computer-basics/ict-device-functions.html'
-  },
-  {
-    id: 's1-003', level: 's1', title: 'Input, Output, Storage & Processing Devices',
-    description: 'Understand the four main categories of computer hardware and their functions.',
-    topic: 'hardware', difficulty: 'beginner', practical: false, time: '5 min',
-    tags: ['hardware','input','output','storage','processing'], prerequisites: ['Identifying ICT Tools'],
-    url: 'o-level/computer-basics/input-output-storage.html'
-  },
-  {
-    id: 's1-004', level: 's1', title: 'The Information Processing Cycle',
-    description: 'Learn how data becomes information through the processing cycle.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '4 min',
-    tags: ['processing','data','information'], prerequisites: ['Input, Output, Storage & Processing Devices'],
-    url: 'o-level/computer-basics/information-processing-cycle.html'
-  },
-  {
-    id: 's1-005', level: 's1', title: 'ICT Tools in Different Fields',
-    description: 'Explore how ICT tools are used in education, healthcare, business, and more.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '4 min',
-    tags: ['applications','fields','real-world'], prerequisites: ['Identifying ICT Tools'],
-    url: 'o-level/computer-basics/ict-tools-fields.html'
-  },
-  {
-    id: 's1-006', level: 's1', title: 'Safe Use of ICT Equipment',
-    description: 'Learn proper handling and safety procedures for ICT equipment.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['safety','equipment','handling'], prerequisites: [],
-    url: 'o-level/computer-basics/safe-use-ict.html'
-  },
-  {
-    id: 's1-007', level: 's1', title: 'Computer Laboratory Rules',
-    description: 'Essential safety and conduct rules for using a computer laboratory.',
-    topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '3 min',
-    tags: ['safety','lab','rules'], prerequisites: [],
-    url: 'o-level/computer-basics/lab-rules.html'
-  },
-
-  // ============================================
-  // O-LEVEL SECTION 2: HARDWARE & SYSTEM STARTUP
-  // ============================================
-  {
-    id: 's2-001', level: 's2', title: 'Inside a Computer: What Is Each Component?',
-    description: 'Explore the internal components of a computer and what each one does.',
-    topic: 'hardware', difficulty: 'beginner', practical: true, time: '6 min',
-    tags: ['hardware','components','cpu','ram'], prerequisites: ['Input, Output, Storage & Processing Devices'],
-    url: 'o-level/hardware/inside-a-computer.html'
-  },
-  {
-    id: 's2-002', level: 's2', title: 'CPU, RAM and Storage Explained',
-    description: 'Understanding the core components that make a computer work.',
-    topic: 'hardware', difficulty: 'beginner', practical: false, time: '5 min',
-    tags: ['cpu','ram','storage','memory'], prerequisites: ['Inside a Computer: What Is Each Component?'],
-    url: 'o-level/hardware/cpu-ram-storage.html'
-  },
-  {
-    id: 's2-003', level: 's2', title: 'Connecting Computer Components',
-    description: 'Learn how to properly connect various hardware components.',
-    topic: 'hardware', difficulty: 'beginner', practical: true, time: '5 min',
-    tags: ['connections','setup','cables'], prerequisites: ['Inside a Computer: What Is Each Component?'],
-    url: 'o-level/hardware/connecting-components.html'
-  },
-  {
-    id: 's2-004', level: 's2', title: 'How to Assemble a Computer',
-    description: 'Step-by-step guide to building a computer from parts.',
-    topic: 'hardware', difficulty: 'advanced', practical: true, time: '10 min',
-    tags: ['assembly','building','hardware'], prerequisites: ['Connecting Computer Components'],
-    url: 'o-level/hardware/assemble-computer.html'
-  },
-  {
-    id: 's2-005', level: 's2', title: 'Connecting a Monitor, Keyboard & Mouse',
-    description: 'Step-by-step guide to connecting basic peripherals to a computer.',
-    topic: 'hardware', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['peripherals','connections','setup'], prerequisites: ['Inside a Computer: What Is Each Component?'],
-    url: 'o-level/hardware/connecting-peripherals.html'
-  },
-  {
-    id: 's2-006', level: 's2', title: 'Connecting Printers and Scanners',
-    description: 'How to connect and set up printers and scanners on a computer.',
-    topic: 'hardware', difficulty: 'intermediate', practical: true, time: '5 min',
-    tags: ['printers','scanners','peripherals'], prerequisites: ['Connecting a Monitor, Keyboard & Mouse'],
-    url: 'o-level/hardware/connecting-printers-scanners.html'
-  },
-  {
-    id: 's2-007', level: 's2', title: 'How to Start a Computer Correctly',
-    description: 'Proper boot-up procedures to avoid system errors.',
-    topic: 'hardware', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['startup','boot','power'], prerequisites: [],
-    url: 'o-level/hardware/start-computer.html'
-  },
-  {
-    id: 's2-008', level: 's2', title: 'How to Shut Down a Computer Correctly',
-    description: 'Proper shutdown procedures to prevent data loss and system damage.',
-    topic: 'hardware', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['shutdown','power','safety'], prerequisites: ['How to Start a Computer Correctly'],
-    url: 'o-level/hardware/shutdown-computer.html'
-  },
-  {
-    id: 's2-009', level: 's2', title: 'Computer Peripheral Devices',
-    description: 'Understanding different types of peripheral devices and their uses.',
-    topic: 'hardware', difficulty: 'beginner', practical: false, time: '4 min',
-    tags: ['peripherals','devices','input','output'], prerequisites: ['Connecting a Monitor, Keyboard & Mouse'],
-    url: 'o-level/hardware/peripheral-devices.html'
-  },
-  {
-    id: 's2-010', level: 's2', title: 'Finding Computer Specifications',
-    description: 'How to check your computer\'s hardware and software specifications.',
-    topic: 'hardware', difficulty: 'intermediate', practical: true, time: '5 min',
-    tags: ['specs','system','information'], prerequisites: ['Inside a Computer: What Is Each Component?'],
-    url: 'o-level/hardware/finding-specs.html'
-  },
-  {
-    id: 's2-011', level: 's2', title: 'Basic Hardware Troubleshooting',
-    description: 'Common hardware problems and how to fix them.',
-    topic: 'hardware', difficulty: 'intermediate', practical: true, time: '6 min',
-    tags: ['troubleshooting','hardware','problems'], prerequisites: ['Finding Computer Specifications'],
-    url: 'o-level/hardware/hardware-troubleshooting.html'
-  },
-
-  // ============================================
-  // O-LEVEL SECTION 3: WORD PROCESSING
-  // ============================================
-  {
-    id: 's3-001', level: 's3', title: 'Creating Your First Document',
-    description: 'Open a word processor, type text, and save your first document.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '5 min',
-    tags: ['word','document','saving'], prerequisites: ['Connecting a Monitor, Keyboard & Mouse'],
-    url: 'o-level/word-processing/first-document.html'
-  },
-  {
-    id: 's3-002', level: 's3', title: 'Typing and Editing Text',
-    description: 'Learn basic text entry, selection, and editing techniques.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['word','typing','editing'], prerequisites: ['Creating Your First Document'],
-    url: 'o-level/word-processing/typing-editing.html'
-  },
-  {
-    id: 's3-003', level: 's3', title: 'Selecting and Moving Text',
-    description: 'How to select, copy, cut, and paste text efficiently.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['word','selection','cut','copy','paste'], prerequisites: ['Typing and Editing Text'],
-    url: 'o-level/word-processing/selecting-moving-text.html'
-  },
-  {
-    id: 's3-004', level: 's3', title: 'Font Formatting',
-    description: 'Change font type, size, color, and style to make documents look professional.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['word','formatting','font'], prerequisites: ['Selecting and Moving Text'],
-    url: 'o-level/word-processing/font-formatting.html'
-  },
-  {
-    id: 's3-005', level: 's3', title: 'Paragraph Formatting',
-    description: 'Align text, set spacing, and format paragraphs effectively.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['word','paragraphs','alignment','spacing'], prerequisites: ['Font Formatting'],
-    url: 'o-level/word-processing/paragraph-formatting.html'
-  },
-  {
-    id: 's3-006', level: 's3', title: 'Page Setup',
-    description: 'Configure margins, orientation, and page size for your documents.',
-    topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['word','page','margins','orientation'], prerequisites: ['Paragraph Formatting'],
-    url: 'o-level/word-processing/page-setup.html'
-  },
-  {
-    id: 's3-007', level: 's3', title: 'Tables in Word',
-    description: 'Create and format tables to present data clearly.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '5 min',
-    tags: ['word','tables','data'], prerequisites: ['Page Setup'],
-    url: 'o-level/word-processing/tables.html'
-  },
-  {
-    id: 's3-008', level: 's3', title: 'Images in Documents',
-    description: 'Insert and position images in your documents.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '4 min',
-    tags: ['word','images','pictures'], prerequisites: ['Tables in Word'],
-    url: 'o-level/word-processing/images.html'
-  },
-  {
-    id: 's3-009', level: 's3', title: 'Text Wrapping',
-    description: 'Control how text flows around images and objects.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '4 min',
-    tags: ['word','wrapping','images'], prerequisites: ['Images in Documents'],
-    url: 'o-level/word-processing/text-wrapping.html'
-  },
-  {
-    id: 's3-010', level: 's3', title: 'Headers and Footers',
-    description: 'Add consistent headers and footers to your documents.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '4 min',
-    tags: ['word','headers','footers'], prerequisites: ['Page Setup'],
-    url: 'o-level/word-processing/headers-footers.html'
-  },
-  {
-    id: 's3-011', level: 's3', title: 'Page Numbers',
-    description: 'Add page numbers to your documents in various formats.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '3 min',
-    tags: ['word','page numbers'], prerequisites: ['Headers and Footers'],
-    url: 'o-level/word-processing/page-numbers.html'
-  },
-  {
-    id: 's3-012', level: 's3', title: 'Columns in Word',
-    description: 'Create newsletter-style columns for your documents.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '4 min',
-    tags: ['word','columns','layout'], prerequisites: ['Page Setup'],
-    url: 'o-level/word-processing/columns.html'
-  },
-  {
-    id: 's3-013', level: 's3', title: 'Footnotes and Endnotes',
-    description: 'Add academic references using footnotes and endnotes.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '4 min',
-    tags: ['word','footnotes','references'], prerequisites: ['Page Numbers'],
-    url: 'o-level/word-processing/footnotes-endnotes.html'
-  },
-  {
-    id: 's3-014', level: 's3', title: 'Watermarks',
-    description: 'Add confidentiality or draft watermarks to documents.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '3 min',
-    tags: ['word','watermarks'], prerequisites: ['Page Setup'],
-    url: 'o-level/word-processing/watermarks.html'
-  },
-  {
-    id: 's3-015', level: 's3', title: 'Table of Contents',
-    description: 'Automatically generate a table of contents for long documents.',
-    topic: 'word-processing', difficulty: 'advanced', practical: true, time: '6 min',
-    tags: ['word','toc','headings'], prerequisites: ['Font Formatting','Paragraph Formatting'],
-    url: 'o-level/word-processing/table-of-contents.html'
-  },
-  {
-    id: 's3-016', level: 's3', title: 'Lists of Figures and Tables',
-    description: 'Create automatic lists of figures and tables in your document.',
-    topic: 'word-processing', difficulty: 'advanced', practical: true, time: '5 min',
-    tags: ['word','figures','tables','lists'], prerequisites: ['Table of Contents','Images in Documents'],
-    url: 'o-level/word-processing/lists-figures-tables.html'
-  },
-  {
-    id: 's3-017', level: 's3', title: 'Password-Protecting Documents',
-    description: 'Secure your documents with password protection.',
-    topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '3 min',
-    tags: ['word','security','passwords'], prerequisites: ['Creating Your First Document'],
-    url: 'o-level/word-processing/password-protect.html'
-  },
-  {
-    id: 's3-018', level: 's3', title: 'Mail Merge — Step by Step',
-    description: 'Create personalized letters and envelopes for multiple recipients.',
-    topic: 'word-processing', difficulty: 'advanced', practical: true, time: '8 min',
-    tags: ['word','mail-merge','personalization'], prerequisites: ['Tables in Word'],
-    url: 'o-level/word-processing/mail-merge.html'
-  },
-  {
-    id: 's3-019', level: 's3', title: 'Creating a School Magazine',
-    description: 'Combine all your Word skills to create a professional school magazine.',
-    topic: 'word-processing', difficulty: 'advanced', practical: true, time: '12 min',
-    tags: ['word','magazine','project'], prerequisites: ['Columns in Word','Images in Documents','Table of Contents'],
-    url: 'o-level/word-processing/school-magazine.html'
-  },
-
-  // ============================================
-  // O-LEVEL SECTION 4: SPREADSHEETS
-  // ============================================
-  {
-    id: 's4-001', level: 's4', title: 'Entering Data in Excel',
-    description: 'Learn to enter and organize data in Excel spreadsheets.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['excel','data-entry','spreadsheets'], prerequisites: ['Connecting a Monitor, Keyboard & Mouse'],
-    url: 'o-level/spreadsheets/entering-data.html'
-  },
-  {
-    id: 's4-002', level: 's4', title: 'Cell Formatting in Excel',
-    description: 'Format cells to make your data clear and professional.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '4 min',
-    tags: ['excel','formatting','cells'], prerequisites: ['Entering Data in Excel'],
-    url: 'o-level/spreadsheets/cell-formatting.html'
-  },
-  {
-    id: 's4-003', level: 's4', title: 'Basic Formulas in Excel',
-    description: 'Write your first formulas for addition, subtraction, and more.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '5 min',
-    tags: ['excel','formulas','calculations'], prerequisites: ['Entering Data in Excel'],
-    url: 'o-level/spreadsheets/basic-formulas.html'
-  },
-  {
-    id: 's4-004', level: 's4', title: 'SUM Function in Excel',
-    description: 'Use the SUM function to quickly add up numbers.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['excel','sum','functions'], prerequisites: ['Basic Formulas in Excel'],
-    url: 'o-level/spreadsheets/sum-function.html'
-  },
-  {
-    id: 's4-005', level: 's4', title: 'AVERAGE Function in Excel',
-    description: 'Calculate averages quickly with the AVERAGE function.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['excel','average','functions'], prerequisites: ['SUM Function in Excel'],
-    url: 'o-level/spreadsheets/average-function.html'
-  },
-  {
-    id: 's4-006', level: 's4', title: 'MIN & MAX Functions in Excel',
-    description: 'Find the smallest and largest values in your data.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '3 min',
-    tags: ['excel','min','max','functions'], prerequisites: ['AVERAGE Function in Excel'],
-    url: 'o-level/spreadsheets/min-max.html'
-  },
-  {
-    id: 's4-007', level: 's4', title: 'COUNT Function in Excel',
-    description: 'Count the number of entries in your data range.',
-    topic: 'spreadsheets', difficulty: 'beginner', practical: true
+  { id: 's1-001', level: 's1', title: 'Identifying ICT Tools', description: 'Identify common ICT tools and explain their uses in everyday life.', topic: 'computer-basics', difficulty: 'beginner', practical: true, time: '4 min', tags: ['ict-tools','devices','identification'], prerequisites: [], url: 'o-level/computer-basics/identifying-ict-tools.html' },
+  { id: 's1-002', level: 's1', title: 'Functions of ICT Devices', description: 'Match common ICT devices with the tasks they perform.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '4 min', tags: ['devices','functions'], prerequisites: ['Identifying ICT Tools'], url: 'o-level/computer-basics/ict-device-functions.html' },
+  { id: 's1-003', level: 's1', title: 'Input, Output, Storage and Processing Devices', description: 'Classify computer devices according to their main functions.', topic: 'hardware', difficulty: 'beginner', practical: false, time: '5 min', tags: ['input','output','storage','processing'], prerequisites: ['Functions of ICT Devices'], url: 'o-level/computer-basics/input-output-storage.html' },
+  { id: 's1-004', level: 's1', title: 'The Information Processing Cycle', description: 'Trace how data is entered, processed, stored and produced as information.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '5 min', tags: ['data','information','processing'], prerequisites: ['Input, Output, Storage and Processing Devices'], url: 'o-level/computer-basics/information-processing-cycle.html' },
+  { id: 's1-005', level: 's1', title: 'ICT in Different Fields', description: 'Explore how ICT is applied in education, health, agriculture, business and other fields.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '5 min', tags: ['applications','fields','community'], prerequisites: ['Identifying ICT Tools'], url: 'o-level/computer-basics/ict-tools-fields.html' },
+  { id: 's1-006', level: 's1', title: 'Starting and Shutting Down a Computer', description: 'Practise safe procedures for switching on, using and shutting down a computer.', topic: 'hardware', difficulty: 'beginner', practical: true, time: '4 min', tags: ['startup','shutdown','safety'], prerequisites: [], url: 'o-level/hardware/start-shutdown.html' },
+  { id: 's1-007', level: 's1', title: 'Computer Laboratory Safety', description: 'Apply basic rules for safe and responsible use of a computer laboratory.', topic: 'security', difficulty: 'beginner', practical: true, time: '4 min', tags: ['lab','safety','responsibility'], prerequisites: [], url: 'o-level/computer-basics/lab-safety.html' },
+  { id: 's1-008', level: 's1', title: 'Handling ICT Equipment Correctly', description: 'Demonstrate correct handling, cleaning and storage of ICT equipment.', topic: 'hardware', difficulty: 'beginner', practical: true, time: '4 min', tags: ['handling','maintenance','equipment'], prerequisites: ['Computer Laboratory Safety'], url: 'o-level/hardware/handling-equipment.html' },
+  { id: 's1-009', level: 's1', title: 'Computer Users and Accessibility', description: 'Explore ways ICT devices and software can support different users.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '5 min', tags: ['accessibility','users','assistive-technology'], prerequisites: ['ICT in Different Fields'], url: 'o-level/computer-basics/accessibility.html' },
+  { id: 's1-010', level: 's1', title: 'Basic Computer Terminology', description: 'Learn essential terms used when talking about computers and ICT.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '5 min', tags: ['terminology','computer','ict'], prerequisites: ['Identifying ICT Tools'], url: 'o-level/computer-basics/basic-terminology.html' },
+  { id: 's2-001', level: 's2', title: 'Inside a Computer: Main Components', description: 'Identify major internal computer components and explain their functions.', topic: 'hardware', difficulty: 'beginner', practical: true, time: '6 min', tags: ['hardware','cpu','ram','motherboard'], prerequisites: ['Input, Output, Storage and Processing Devices'], url: 'o-level/hardware/inside-a-computer.html' },
+  { id: 's2-002', level: 's2', title: 'CPU, RAM and Storage Explained', description: 'Understand how the processor, memory and storage work together.', topic: 'hardware', difficulty: 'beginner', practical: false, time: '5 min', tags: ['cpu','ram','storage','memory'], prerequisites: ['Inside a Computer: Main Components'], url: 'o-level/hardware/cpu-ram-storage.html' },
+  { id: 's2-003', level: 's2', title: 'Connecting Computer Peripherals', description: 'Connect a monitor, keyboard, mouse and other basic peripherals correctly.', topic: 'hardware', difficulty: 'beginner', practical: true, time: '5 min', tags: ['peripherals','connections','setup'], prerequisites: ['Inside a Computer: Main Components'], url: 'o-level/hardware/connecting-peripherals.html' },
+  { id: 's2-004', level: 's2', title: 'Ports and Connectors', description: 'Identify common computer ports and select suitable connectors for devices.', topic: 'hardware', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['ports','connectors','usb','hdmi'], prerequisites: ['Connecting Computer Peripherals'], url: 'o-level/hardware/ports-connectors.html' },
+  { id: 's2-005', level: 's2', title: 'Finding Computer Specifications', description: 'Check the hardware and software specifications of a computer.', topic: 'hardware', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['specifications','system-information','hardware'], prerequisites: ['CPU, RAM and Storage Explained'], url: 'o-level/hardware/finding-specs.html' },
+  { id: 's2-006', level: 's2', title: 'Basic Hardware Troubleshooting', description: 'Diagnose common hardware problems and identify practical solutions.', topic: 'hardware', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['troubleshooting','hardware','diagnosis'], prerequisites: ['Finding Computer Specifications'], url: 'o-level/hardware/hardware-troubleshooting.html' },
+  { id: 's2-007', level: 's2', title: 'System Software vs Application Software', description: 'Distinguish system software from application software using practical examples.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '5 min', tags: ['software','system-software','applications'], prerequisites: [], url: 'o-level/computer-basics/system-vs-application-software.html' },
+  { id: 's2-008', level: 's2', title: 'Creating Folders and Subfolders', description: 'Create a logical folder structure for organising school and personal files.', topic: 'file-management', difficulty: 'beginner', practical: true, time: '5 min', tags: ['folders','files','organisation'], prerequisites: ['Basic Computer Terminology'], url: 'o-level/file-management/folders.html' },
+  { id: 's2-009', level: 's2', title: 'Copying, Moving and Renaming Files', description: 'Manage files using copy, cut, paste and rename operations.', topic: 'file-management', difficulty: 'beginner', practical: true, time: '5 min', tags: ['files','copy','move','rename'], prerequisites: ['Creating Folders and Subfolders'], url: 'o-level/file-management/copy-move-rename.html' },
+  { id: 's2-010', level: 's2', title: 'File Extensions and File Types', description: 'Recognise common file extensions and identify the applications used to open them.', topic: 'file-management', difficulty: 'beginner', practical: false, time: '5 min', tags: ['extensions','file-types','formats'], prerequisites: ['Creating Folders and Subfolders'], url: 'o-level/file-management/file-extensions.html' },
+  { id: 's2-011', level: 's2', title: 'Searching for Files Efficiently', description: 'Find files and folders quickly using search tools and useful search terms.', topic: 'file-management', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['search','files','productivity'], prerequisites: ['Copying, Moving and Renaming Files'], url: 'o-level/file-management/searching-files.html' },
+  { id: 's2-012', level: 's2', title: 'Backing Up Important Files', description: 'Create simple backups and explain why important files should have more than one copy.', topic: 'security', difficulty: 'beginner', practical: true, time: '5 min', tags: ['backup','security','storage'], prerequisites: ['Copying, Moving and Renaming Files'], url: 'o-level/security/file-backup.html' },
+  { id: 's3-001', level: 's3', title: 'Creating Your First Document', description: 'Open a word processor, enter text and save a document correctly.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '5 min', tags: ['word','document','saving'], prerequisites: ['Creating Folders and Subfolders'], url: 'o-level/word-processing/first-document.html' },
+  { id: 's3-002', level: 's3', title: 'Typing and Editing Text', description: 'Enter, select, delete and edit text efficiently in a word processor.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min', tags: ['typing','editing','word'], prerequisites: ['Creating Your First Document'], url: 'o-level/word-processing/typing-editing.html' },
+  { id: 's3-003', level: 's3', title: 'Cut, Copy, Paste and Undo', description: 'Use common editing commands to manipulate text efficiently.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min', tags: ['cut','copy','paste','undo'], prerequisites: ['Typing and Editing Text'], url: 'o-level/word-processing/cut-copy-paste.html' },
+  { id: 's3-004', level: 's3', title: 'Font Formatting', description: 'Change font type, size, colour and emphasis to improve document presentation.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min', tags: ['font','formatting','word'], prerequisites: ['Typing and Editing Text'], url: 'o-level/word-processing/font-formatting.html' },
+  { id: 's3-005', level: 's3', title: 'Paragraph Formatting', description: 'Apply alignment, indentation, line spacing and paragraph spacing.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '5 min', tags: ['paragraphs','alignment','spacing'], prerequisites: ['Font Formatting'], url: 'o-level/word-processing/paragraph-formatting.html' },
+  { id: 's3-006', level: 's3', title: 'Page Setup: Margins, Size and Orientation', description: 'Prepare a document using suitable paper size, margins and page orientation.', topic: 'word-processing', difficulty: 'beginner', practical: true, time: '4 min', tags: ['page-setup','margins','orientation'], prerequisites: ['Paragraph Formatting'], url: 'o-level/word-processing/page-setup.html' },
+  { id: 's3-007', level: 's3', title: 'Creating and Formatting Tables', description: 'Create tables and format borders, alignment, rows and columns.', topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '6 min', tags: ['tables','word','formatting'], prerequisites: ['Page Setup: Margins, Size and Orientation'], url: 'o-level/word-processing/tables.html' },
+  { id: 's3-008', level: 's3', title: 'Inserting and Positioning Images', description: 'Insert pictures and control their size, position and layout in a document.', topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['images','pictures','layout'], prerequisites: ['Creating and Formatting Tables'], url: 'o-level/word-processing/images.html' },
+  { id: 's3-009', level: 's3', title: 'Headers, Footers and Page Numbers', description: 'Create professional multi-page documents with headers, footers and page numbers.', topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['headers','footers','page-numbers'], prerequisites: ['Page Setup: Margins, Size and Orientation'], url: 'o-level/word-processing/headers-footers.html' },
+  { id: 's3-010', level: 's3', title: 'Columns and Text Wrapping', description: 'Use columns and text wrapping to create attractive document layouts.', topic: 'word-processing', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['columns','wrapping','layout'], prerequisites: ['Inserting and Positioning Images'], url: 'o-level/word-processing/columns-wrapping.html' },
+  { id: 's3-011', level: 's3', title: 'Mail Merge', description: 'Create personalised letters and documents from a data source.', topic: 'word-processing', difficulty: 'advanced', practical: true, time: '8 min', tags: ['mail-merge','letters','database'], prerequisites: ['Creating and Formatting Tables'], url: 'o-level/word-processing/mail-merge.html' },
+  { id: 's3-012', level: 's3', title: 'Creating a Professional School Report', description: 'Combine document formatting skills to produce a structured school report.', topic: 'word-processing', difficulty: 'advanced', practical: true, time: '10 min', tags: ['report','word','project'], prerequisites: ['Headers, Footers and Page Numbers','Creating and Formatting Tables'], url: 'o-level/word-processing/school-report.html' },
+  { id: 's4-001', level: 's4', title: 'Entering and Organising Data in Excel', description: 'Enter, edit and organise information in a spreadsheet worksheet.', topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '5 min', tags: ['excel','data-entry','worksheet'], prerequisites: ['Creating Folders and Subfolders'], url: 'o-level/spreadsheets/entering-data.html' },
+  { id: 's4-002', level: 's4', title: 'Cell Formatting in Excel', description: 'Format numbers, text, borders, alignment and cell appearance.', topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '5 min', tags: ['excel','cells','formatting'], prerequisites: ['Entering and Organising Data in Excel'], url: 'o-level/spreadsheets/cell-formatting.html' },
+  { id: 's4-003', level: 's4', title: 'Basic Spreadsheet Formulas', description: 'Use cell references and arithmetic operators to perform calculations.', topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '5 min', tags: ['excel','formulas','calculations'], prerequisites: ['Entering and Organising Data in Excel'], url: 'o-level/spreadsheets/basic-formulas.html' },
+  { id: 's4-004', level: 's4', title: 'SUM and AVERAGE Functions', description: 'Use SUM and AVERAGE to calculate totals and means from a data range.', topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '4 min', tags: ['sum','average','functions'], prerequisites: ['Basic Spreadsheet Formulas'], url: 'o-level/spreadsheets/sum-average.html' },
+  { id: 's4-005', level: 's4', title: 'MIN, MAX and COUNT Functions', description: 'Find minimum, maximum and count values in a spreadsheet dataset.', topic: 'spreadsheets', difficulty: 'beginner', practical: true, time: '4 min', tags: ['min','max','count','functions'], prerequisites: ['SUM and AVERAGE Functions'], url: 'o-level/spreadsheets/min-max-count.html' },
+  { id: 's4-006', level: 's4', title: 'Sorting and Filtering Data', description: 'Arrange records and display only the information needed from a dataset.', topic: 'spreadsheets', difficulty: 'intermediate', practical: true, time: '6 min', tags: ['sort','filter','data'], prerequisites: ['MIN, MAX and COUNT Functions'], url: 'o-level/spreadsheets/sorting-filtering.html' },
+  { id: 's4-007', level: 's4', title: 'Charts from Spreadsheet Data', description: 'Create suitable charts to communicate information clearly.', topic: 'spreadsheets', difficulty: 'intermediate', practical: true, time: '6 min', tags: ['charts','graphs','excel'], prerequisites: ['Sorting and Filtering Data'], url: 'o-level/spreadsheets/charts.html' },
+  { id: 's4-008', level: 's4', title: 'Spreadsheet Page Layout and Printing', description: 'Prepare a worksheet for printing using margins, orientation, scaling and print areas.', topic: 'spreadsheets', difficulty: 'intermediate', practical: true, time: '5 min', tags: ['printing','page-layout','excel'], prerequisites: ['Charts from Spreadsheet Data'], url: 'o-level/spreadsheets/page-layout-printing.html' },
+  { id: 's4-009', level: 's4', title: 'Introduction to Databases', description: 'Understand databases, records, fields and the purpose of database management systems.', topic: 'databases', difficulty: 'beginner', practical: false, time: '5 min', tags: ['database','records','fields'], prerequisites: ['Entering and Organising Data in Excel'], url: 'o-level/databases/introduction.html' },
+  { id: 's4-010', level: 's4', title: 'Creating a Simple Database Table', description: 'Create a table with appropriate fields and data types.', topic: 'databases', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['database','tables','fields','data-types'], prerequisites: ['Introduction to Databases'], url: 'o-level/databases/create-table.html' },
+  { id: 's4-011', level: 's4', title: 'Primary Keys and Relationships', description: 'Use primary keys and simple relationships to organise related records.', topic: 'databases', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['primary-key','relationships','database'], prerequisites: ['Creating a Simple Database Table'], url: 'o-level/databases/keys-relationships.html' },
+  { id: 's4-012', level: 's4', title: 'Database Queries and Reports', description: 'Retrieve selected records and produce useful database reports.', topic: 'databases', difficulty: 'advanced', practical: true, time: '8 min', tags: ['queries','reports','database'], prerequisites: ['Primary Keys and Relationships'], url: 'o-level/databases/queries-reports.html' },
+  { id: 's5-001', level: 's5', title: 'Introduction to Computing', description: 'Understand computers, computer systems, data, information and the role of ICT.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '6 min', tags: ['computing','computer-systems','data','information'], prerequisites: [], url: 'a-level/computing/introduction-to-computing.html' },
+  { id: 's5-002', level: 's5', title: 'World of ICTs and ICT Applications', description: 'Examine how ICT is applied in social, economic, educational and organisational settings.', topic: 'computer-basics', difficulty: 'beginner', practical: false, time: '6 min', tags: ['ict','applications','society'], prerequisites: ['Introduction to Computing'], url: 'a-level/computing/world-of-icts.html' },
+  { id: 's5-003', level: 's5', title: 'Booting and the Computer Startup Process', description: 'Explain and demonstrate the basic computer booting process.', topic: 'hardware', difficulty: 'intermediate', practical: true, time: '6 min', tags: ['booting','startup','operating-system'], prerequisites: ['Introduction to Computing'], url: 'a-level/computing/booting.html' },
+  { id: 's5-004', level: 's5', title: 'File Management for Efficient Work', description: 'Organise files, folders, paths and file types for efficient computer use.', topic: 'file-management', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['file-management','paths','folders'], prerequisites: ['Booting and the Computer Startup Process'], url: 'a-level/file-management/file-management.html' },
+  { id: 's5-005', level: 's5', title: 'Common Computer Utilities', description: 'Use common utilities for system maintenance, file handling and everyday computing tasks.', topic: 'computer-basics', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['utilities','maintenance','system-tools'], prerequisites: ['File Management for Efficient Work'], url: 'a-level/computing/common-utilities.html' },
+  { id: 's5-006', level: 's5', title: 'Computer Laboratory Care and Maintenance', description: 'Apply safe laboratory practices, routine maintenance and responsible equipment use.', topic: 'hardware', difficulty: 'intermediate', practical: true, time: '7 min', tags: ['maintenance','laboratory','care'], prerequisites: ['Common Computer Utilities'], url: 'a-level/hardware/lab-care-maintenance.html' },
+];
