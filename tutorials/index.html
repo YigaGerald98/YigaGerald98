@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="Complete ICT tutorials for O-Level and A-Level aligned with NCDC syllabus.">
 <title>ICT Tutorials | Yiga Gerald</title>
-<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/responsive.css">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/responsive.css">
 <style>
   .page-hero { text-align:center; padding:3rem 1rem 2rem; background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%); border-bottom:1px solid #e2e8f0; }
   .page-hero .eyebrow { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:#64748b; font-weight:600; }
@@ -52,7 +53,64 @@
 </style>
 </head>
 <body data-page="tutorials">
-<div id="site-header"></div>
+<div id="site-header">
+  <header class="site-header">
+
+    <nav class="navbar">
+
+        <a href="/index.html" class="brand">
+            <span class="brand-mark">YG</span>
+
+            <span class="brand-text">
+                Yiga Gerald
+                <small>ICT Teacher & Digital Creator</small>
+            </span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="/index.html" class="nav-link">
+                Home
+            </a>
+
+            <a href="/pages/about.html" class="nav-link">
+                About
+            </a>
+
+            <a href="/pages/teaching.html" class="nav-link">
+                Teaching
+            </a>
+
+            <a href="/tutorials/index.html" class="nav-link active">
+                Tutorials
+            </a>
+
+            <a href="/assessments/index.html" class="nav-link">
+                Assessment Lab
+            </a>
+
+            <a href="/pages/projects.html" class="nav-link">
+                Projects
+            </a>
+
+            <a href="/pages/contact.html" class="nav-link">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+  </header>
+</div>
 <main>
   <section class="page-hero">
     <div class="container">
@@ -109,10 +167,10 @@
   </section>
 </main>
 <div id="site-footer"></div>
-<script src="../data/tutorials-data.js"></script>
-<script src="../js/main.js"></script>
-<script src="../js/navigation.js"></script>
-<script src="../js/utilities.js"></script>
+<script src="/data/tutorials-data.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/utilities.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded',function(){
     const grid=document.getElementById('tutorial-grid');
